@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Image Slider</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="img-slider">
+        <div class="slide active">
+            <img src="1.jpg" alt="">
+            <div class="info">
+                <h2>Slide 1</h2>
+                <p>Facebook is a social networking website where users can post comments, share photographs, and post
+                    links to news or other interesting content on the web, chat live, and watch short-form video.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="2.jpg" alt="">
+            <div class="info">
+                <h2>Slide 2</h2>
+                <p>WhatsApp is a free cross-platform messaging service. It lets users of iPhone and Android smartphones
+                    and Mac and Windows PC call and exchange text, photo, audio and video messages with others across
+                    the globe for free, regardless of the recipient's device.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="3.jpg" alt="">
+            <div class="info">
+                <h2>Slide 3</h2>
+                <p>Instagram is a free photo and video sharing app available on iPhone and Android. People can upload
+                    photos or videos to our service and share them with their followers or with a select group of
+                    friends. They can also view, comment and like posts shared by their friends on Instagram.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="4.jpg" alt="">
+            <div class="info">
+                <h2>Slide 4</h2>
+                <p>Twitter is a free social networking site where users broadcast short posts known as tweets. These
+                    tweets can contain text, videos, photos or links. To access Twitter, users need an internet
+                    connection or smart phone to use the app or website, Twitter.com.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="5.jpg" alt="">
+            <div class="info">
+                <h2>Slide 5</h2>
+                <p>Netflix is a subscription-based streaming service that allows our members to watch TV shows and
+                    movies on an internet-connected device. Depending on your plan, you can also download TV shows and
+                    movies to your iOS, Android, or Windows 10 device and watch without an internet connection.
+                </p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="6.jpg" alt="">
+            <div class="info">
+                <h2>Slide 6</h2>
+                <p>TikTok is mainly used for creating and sharing short videos, typically set to music. These videos can
+                    be anything from funny skits and memes to educational content, dance and lip sync videos, and more.
+                </p>
+            </div>
+        </div>
+        <div class="navigation">
+            <div class="btn active"></div>
+            <div class="btn"></div>
+            <div class="btn"></div>
+            <div class="btn"></div>
+            <div class="btn"></div>
+            <div class="btn"></div>
+     </div>
+     </div>
+
+     <script type="text/javascript">
+        var slides = document.querySelectorAll('.slide');
+        var btns = document.querySelectorAll('.btn');
+        let currentSlide = 1;
+    
+        // JavaScript for image slider manual navigation
+        var manualNav = function(manual) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            btns.forEach(btn => btn.classList.remove('active'));
+    
+            slides[manual].classList.add('active');
+            btns[manual].classList.add('active');
+        }
+    
+        btns.forEach((btn, i) => {
+            btn.addEventListener("click", () => {
+                manualNav(i);
+                currentSlide = i;
+            });
+        });
+
+        //javascript for image slider autoplay navigation
+        var repeat = function(activeClass){
+            let active = document.getElementsByClassName('active');
+            let i = 1;
+
+            var repeater = () => {
+                setTimeout(function(){
+                    [...active].forEach((activeSlide) => {
+                    activeSlide.classList.remove('active');
+                });
+
+                slides[i].classList.add('active');
+                btns[i].classList.add('active');
+                i++;
+
+                if (slides.length == i) {
+                    i = 0;
+                }
+                if (i >= slides.length) {
+                    return;
+                }
+                repeater();
+                }, 10000);
+            }
+            repeater();
+        }
+        repeat();
+    </script>
+    
+</body>
+
+</html>
